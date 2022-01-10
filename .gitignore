@@ -28,7 +28,7 @@ frontend/node_modules
 frontend/.idea
 
 package-lock.json
-frontend/package-lock.json
+package-lock.json
 
 /backend/node_modules/
 /backend/package-lock.json
