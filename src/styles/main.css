@@ -2,5 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --purple-light: #BB4DFF;
+    --purple-dark: #7C00C8;
+}
+
+html, body {
+    font-family: Raleway, sans-serif;
+}
+
+.page {
+    @apply container mt-5 mx-auto;
+    min-height: 82vh;
+}
+
+a {
+    position: relative;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--purple-light);
+    transition: width .3s ease;
+}
+
+a:hover {
+    @apply text-purplelight transition-colors;
+}
+
+a:not(.non-und):hover::after {
+    width: 100%;
+}
+
+.form-control {
+    @apply rounded-full border border-gray-300 px-1 py-2 transition outline-0 focus:border focus:border-purple-400
+}
+
 .btn {
+    @apply bg-gradient-to-br from-purplelight to-purpledark px-3 py-2 rounded-full text-white hover:scale-105
 }

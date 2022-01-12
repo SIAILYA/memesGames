@@ -12,6 +12,7 @@ import "./styles/main.css"
 import Home from './views/Home';
 
 import Menu from "./components/Menu";
+import FAQ from "./views/FAQ";
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -25,6 +26,7 @@ ReactDOM.render(
                 <main className="page">
                     <Routes>
                         <Route path="/" element={<Home/>}/>
+                        <Route path="/faq" element={<FAQ/>}/>
                     </Routes>
                 </main>
                 <footer className="text-center">
