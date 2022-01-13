@@ -17,7 +17,7 @@ function Menu() {
                     Как играть?
                 </NavLink>
                 <NavLink to="/support" className={({isActive}) => isActive ? "text-purpledark nav-link" : "nav-link"}>
-                    Поддержка
+                    Поддержать
                 </NavLink>
             </div>
         </div>

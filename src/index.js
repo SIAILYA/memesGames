@@ -18,7 +18,7 @@ const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 
 ReactDOM.render(
     <Provider store={store}>
-        <div className="app pt-8 pb-4">
+        <div className="app pt-4 md:pt-8 pb-4">
             <BrowserRouter>
                 <header className="container px-2 mx-auto">
                     <Menu/>
@@ -29,8 +29,8 @@ ReactDOM.render(
                         <Route path="/faq" element={<FAQ/>}/>
                     </Routes>
                 </main>
-                <footer className="text-center">
-                    with <span className="material-icons-outlined text-xs text-red-400">favorite</span> by <a href="https://overcreated.ru" target="_blank">overcreated</a>
+                <footer className="text-center pt-4">
+                    with <span className="material-icons-outlined text-xs text-red-400">favorite</span> by <a href="https://overcreated.ru" target="_blank" rel="noreferrer">overcreated</a>
                 </footer>
             </BrowserRouter>
         </div>
