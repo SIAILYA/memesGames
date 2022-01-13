@@ -16,8 +16,7 @@ html, body {
 }
 
 .page {
-    @apply container mt-5 mx-auto;
-    min-height: 82vh;
+    @apply container mt-5 mx-auto min-h-[75vh] md:min-h-[80vh];
 }
 
 a {
@@ -48,7 +47,7 @@ a:not(.non-und):hover::after {
 }
 
 .btn {
-    @apply bg-gradient-purple px-3 py-2 rounded-full transition text-white hover:scale-105 outline-0 focus:border focus:border-purple-300
+    @apply bg-gradient-purple px-3 py-2 rounded-full transition text-white hover:scale-105 outline-0 focus:outline focus:outline-white active:scale-95
 }
 
 .bg-gradient-purple {
