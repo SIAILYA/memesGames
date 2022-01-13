@@ -15,6 +15,7 @@ import Home from './views/Home';
 
 import Menu from "./components/Menu";
 import FAQ from "./views/FAQ";
+import StartGame from "./views/StartGame";
 
 const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),
@@ -32,6 +33,7 @@ ReactDOM.render(
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/faq" element={<FAQ/>}/>
+                        <Route path="/startgame" element={<StartGame/>}/>
                     </Routes>
                 </main>
                 <footer className="text-center pt-4">

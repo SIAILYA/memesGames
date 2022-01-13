@@ -62,7 +62,7 @@ const Home = () => {
                             dispatch(setCurrentUserName(currentUserName.trim()))
                             if (currentUserName !== "") {
                                 console.log(currentUserName)
-                                navigate("/creategame")
+                                navigate("/startgame")
                             } else {
                                 nameInput.current.focus()
                                 nameInput.current.classList.add("form-invalid")
