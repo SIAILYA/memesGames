@@ -8,6 +8,7 @@
 }
 
 * {
+    user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -43,13 +44,17 @@ a:not(.non-und):hover::after {
 }
 
 .form-control {
-    @apply rounded-full border border-gray-300 px-1 py-2 transition outline-0 focus:border focus:border-purple-400
+    @apply rounded-full border border-gray-300 px-1 py-2 transition outline-0 focus:border focus:border-purple-400 invalid:border-red-500
+}
+
+.form-invalid {
+    @apply border-red-500;
 }
 
 .btn {
-    @apply bg-gradient-purple px-3 py-2 rounded-full transition text-white hover:scale-105 outline-0 focus:outline focus:outline-white active:scale-95
+    @apply bg-gradient-purple px-3 py-2 rounded-full transition text-white hover:shadow-lg focus:scale-105 outline-0 focus:outline focus:outline-white active:scale-95
 }
 
 .bg-gradient-purple {
-    @apply bg-gradient-to-br from-purplelight to-purpledark
+    @apply bg-gradient-to-br from-purplelight to-purpledark;
 }
