@@ -10,11 +10,8 @@ export const setCurrentUserName = (newName) => {
 }
 
 export const fetchCurrentUserAvatar = () => {
-    console.log(213)
-
     return async dispatch => {
         const response = await axios.get(BACKEND + "/utils/random_avatar")
-        console.log(response.data)
 
         dispatch({
             type: FETCH_USER_AVATAR,
