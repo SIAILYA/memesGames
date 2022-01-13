@@ -4,7 +4,9 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import {Provider} from "react-redux"
-import {createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
+import thunk from "redux-thunk";
+
 import {rootReducer} from "./redux/rootReducer";
 
 import "./styles/main.css"
@@ -14,7 +16,10 @@ import Home from './views/Home';
 import Menu from "./components/Menu";
 import FAQ from "./views/FAQ";
 
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer, compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+)
 
 ReactDOM.render(
     <Provider store={store}>

@@ -3,7 +3,7 @@ import {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {setCurrentUserName} from "../redux/actions";
+import {fetchCurrentUserAvatar, setCurrentUserName} from "../redux/actions";
 import FloatingMeme from "../components/FloatingMeme";
 
 import avatar from "../assets/avatar.jpg"
@@ -43,12 +43,12 @@ const Home = () => {
                 <div className="flex flex-col md:flex-row mt-2">
                     <div className="relative w-1/2 mx-auto">
                         <button
-                            onClick={() => {}}
+                            onClick={() => dispatch(fetchCurrentUserAvatar())}
                             className="change aspect-square rounded-full flex p-2.5 cursor-pointer shadow-straight absolute btn bottom-0 right-0">
                             <span className="material-icons-outlined m-auto text-">replay</span>
                         </button>
                         <div className="aspect-square rounded-full border-gray-300 border overflow-hidden">
-                            <img src={currentUserAvatar || avatar} alt="" className="w-full object-cover"/>
+                            <img src={currentUserAvatar || avatar} alt="" className="w-full h-full object-cover"/>
                         </div>
                     </div>
 
