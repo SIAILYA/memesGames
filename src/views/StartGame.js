@@ -1,8 +1,13 @@
 import PublicGame from "../components/PublicGame";
-import HelloCard from "../components/HelloCard";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+
+import "../styles/startgame.css"
+
+import tutorial_call from "../assets/tutorial_call.png"
+import TutorialSlide from "../components/TutorialSlide";
+import TutorialSlideshow from "../components/TutorialSlideshow";
 
 function StartGame() {
     const currentUserName = useSelector(state => state.currentUser.name)
@@ -11,13 +16,17 @@ function StartGame() {
     useEffect(() => {
         if (!currentUserName) {
             navigate("/")
+        } else {
+            window.onbeforeunload = () => {
+                return "Стой! Введенные данные не сохранятся при перезагрузке!"
+            }
         }
     }, [])
 
     return (
         <div className="container flex flex-col md:flex-row xl:w-5/6 2xl:w-3/4 mx-auto px-3">
             <div className="md:w-full md:mr-8">
-                <HelloCard className="md:hidden mb-4 md:mb-0"/>
+                {/*<HelloCard className="md:hidden mb-4 md:mb-0"/>*/}
                 <div className="shadow-straight p-3 rounded-xl text-center">
                     <h2 className="text-xl font-semibold text-accent-dark">Начнем?</h2>
                     <div className="flex mt-4 flex-col lg:flex-row">
@@ -27,7 +36,8 @@ function StartGame() {
                                 <input type="text" className="form-control text-center w-full"
                                        placeholder="ID комнаты"/>
                                 <button className="btn aspect-square flex shadow-straight"><span
-                                    className="material-icons-outlined my-auto text-[20px]">chevron_right</span></button>
+                                    className="material-icons-outlined my-auto text-[20px]">chevron_right</span>
+                                </button>
                             </div>
                         </div>
                         <div className="text-gray-500 flex mx-3">
@@ -51,11 +61,8 @@ function StartGame() {
             </div>
 
             <div className="md:w-3/4 mt-4 md:mt-0">
-                <HelloCard className="hidden md:block"/>
-                <div className="card md:mt-4">
-                    <h3 className="header text-center text-lg lg:text-2xl">Как играть</h3>
-                    {/*    TODO: Как играть*/}
-                </div>
+                {/*<HelloCard className="hidden md:block"/>*/}
+                <TutorialSlideshow/>
             </div>
         </div>
     )

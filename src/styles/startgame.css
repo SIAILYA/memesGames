@@ -1,0 +1,17 @@
+.slide {
+    @apply w-full text-center overflow-hidden transition-all transition-[500ms];
+}
+
+.slide-indicator {
+    animation: slide-time infinite 4s ease;
+}
+
+@keyframes slide-time {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}

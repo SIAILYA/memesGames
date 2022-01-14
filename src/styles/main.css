@@ -64,10 +64,10 @@ a:not(.non-und):hover::after {
 
 .header {
     @apply text-xl font-semibold text-accent-dark;
-/*    TODO: Провести рефракторинг заголовков*/
+    /*    TODO: Провести рефракторинг заголовков*/
 }
 
 .card {
     @apply shadow-straight p-3 rounded-xl;
-/*    TODO: Провести рефракторинг карточек*/
+    /*    TODO: Провести рефракторинг карточек*/
 }
