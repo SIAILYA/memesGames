@@ -14,7 +14,7 @@
 }
 
 .circles li {
-    @apply bg-gradient-to-br from-purplelight to-purpledark;
+    @apply bg-gradient-to-br from-accent-light to-accent-dark;
 
     position: absolute;
     display: block;

@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "purplelight": "#BB4DFF",
-        "purpledark": "#7C00C8",
+        "accent-light": "#4dafff",
+        "accent-dark": "#0075c8",
       },
       boxShadow: {
         'straight': '0px 0px 14px rgba(0, 0, 0, 0.25)',

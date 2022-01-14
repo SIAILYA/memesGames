@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --purple-light: #BB4DFF;
-    --purple-dark: #7C00C8;
-}
-
 * {
     user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -25,18 +20,18 @@ a {
 }
 
 a::after {
+    @apply bg-accent-dark;
     content: "";
     position: absolute;
     width: 0;
     left: 0;
     bottom: 0;
     height: 1px;
-    background: var(--purple-light);
     transition: width .3s ease;
 }
 
 a:hover {
-    @apply text-purplelight transition-colors;
+    @apply from-accent-light transition-colors;
 }
 
 a:not(.non-und):hover::after {
@@ -44,7 +39,7 @@ a:not(.non-und):hover::after {
 }
 
 .form-control {
-    @apply rounded-full border border-gray-300 px-1 py-2 transition outline-0 focus:border focus:border-purple-400 invalid:border-red-500
+    @apply rounded-full border border-gray-300 px-1 py-2 transition outline-0 focus:border focus:border-accent-light invalid:border-red-500
 }
 
 .form-invalid {
@@ -52,9 +47,27 @@ a:not(.non-und):hover::after {
 }
 
 .btn {
-    @apply bg-gradient-purple px-3 py-2 rounded-full transition text-white hover:shadow-lg focus:scale-105 outline-0 focus:outline focus:outline-white active:scale-95
+    @apply bg-gradient-accent px-3 py-2 rounded-full transition text-white cursor-pointer hover:shadow-lg focus:scale-105 outline-0 focus:outline focus:outline-white active:scale-95
 }
 
-.bg-gradient-purple {
-    @apply bg-gradient-to-br from-purplelight to-purpledark;
+.bg-gradient-accent {
+    @apply bg-gradient-to-br from-accent-light to-accent-dark;
+}
+
+.form-btn-inline {
+    @apply rounded-full border border-gray-300
+}
+
+.form-btn-inline input {
+    border: none;
+}
+
+.header {
+    @apply text-xl font-semibold text-accent-dark;
+/*    TODO: Провести рефракторинг заголовков*/
+}
+
+.card {
+    @apply shadow-straight p-3 rounded-xl;
+/*    TODO: Провести рефракторинг карточек*/
 }

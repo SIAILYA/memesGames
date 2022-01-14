@@ -19,9 +19,9 @@ const Home = () => {
 
     return (
         <div className="text-center container px-3 pt-5">
-            <h1 className="font-semibold text-purpledark text-xl md:text-2xl">Игры с мемами для друзей!</h1>
+            <h1 className="font-semibold text-accent-dark text-xl md:text-2xl">Игры с мемами для друзей!</h1>
             <div
-                className="flex mx-auto flex-wrap justify-center text-sm text-purpledark px-5 py-3 mt-3 shadow-straight
+                className="flex mx-auto flex-wrap justify-center text-sm text-accent-dark px-5 py-3 mt-3 shadow-straight
                 rounded-full w-full md:w-1/2 xl:w-1/3 md:text-base xl:text-lg bg-white"
             >
                 <div className="flex flex-col justify-center w-1/3">
@@ -39,7 +39,7 @@ const Home = () => {
             </div>
             <div
                 className="mt-[10vh] md:mt-[20vh] shadow-straight bg-white text-center rounded-2xl p-3.5 w-full md:w-1/2 xl:w-1/3  mx-auto">
-                <span className="text-purpledark font-semibold text-xl">Кто ты сегодня?</span>
+                <span className="text-accent-dark font-semibold text-xl">Кто ты сегодня?</span>
                 <div className="flex flex-col md:flex-row mt-2">
                     <div className="relative w-1/2 mx-auto">
                         <button

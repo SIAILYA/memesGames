@@ -7,16 +7,17 @@ function Menu() {
     return (
         <div className="text-center md:flex text-left py-4">
             <NavLink to="/" className="block non-und">
-                <img className="mx-auto md:mr-auto" src={logo} alt=""/>
+                <span className="font-extrabold text-transparent bg-clip-text bg-gradient-accent mx-auto db:mr-auto text-4xl font-bold">MemesGames.ru</span>
+                {/*<img className="mx-auto md:mr-auto" src={logo} alt=""/>*/}
             </NavLink>
             <div className="mt-3 md:mt-auto ml-auto">
-                <NavLink to="/games" className={({isActive}) => isActive ? "text-purpledark nav-link" : "nav-link"}>
+                <NavLink to="/games" className={({isActive}) => isActive ? "text-accent-dark nav-link" : "nav-link"}>
                     Игры
                 </NavLink>
-                <NavLink to="/faq" className={({isActive}) => isActive ? "text-purpledark nav-link" : "nav-link"}>
+                <NavLink to="/faq" className={({isActive}) => isActive ? "text-accent-dark nav-link" : "nav-link"}>
                     Как играть?
                 </NavLink>
-                <NavLink to="/support" className={({isActive}) => isActive ? "text-purpledark nav-link" : "nav-link"}>
+                <NavLink to="/support" className={({isActive}) => isActive ? "text-accent-dark nav-link" : "nav-link"}>
                     Поддержать
                 </NavLink>
             </div>
