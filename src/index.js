@@ -16,6 +16,7 @@ import Home from './views/Home';
 import Menu from "./components/Menu";
 import FAQ from "./views/FAQ";
 import StartGame from "./views/StartGame";
+import NotFound from "./views/NotFound";
 
 const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),
@@ -34,6 +35,7 @@ ReactDOM.render(
                         <Route path="/" element={<Home/>}/>
                         <Route path="/faq" element={<FAQ/>}/>
                         <Route path="/startgame" element={<StartGame/>}/>
+                        <Route path="*" status={404} element={<NotFound/>}/>
                     </Routes>
                 </main>
                 <footer className="text-center pt-4">
