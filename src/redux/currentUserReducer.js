@@ -1,8 +1,9 @@
-import {FETCH_USER_AVATAR, SET_USER_NAME} from "./types";
+import {FETCH_USER_AVATAR, SET_USER_ID, SET_USER_NAME} from "./types";
 
 const initialState = {
-    avatar: "",
+    avatar: 1,
     name: "",
+    userId: ""
 }
 
 export const currentUserReducer = (state = initialState, action) => {
@@ -11,6 +12,8 @@ export const currentUserReducer = (state = initialState, action) => {
             return {...state, name: action.payload}
         case FETCH_USER_AVATAR:
             return {...state, avatar: action.payload}
+        case SET_USER_ID:
+            return {...state, userId: action.payload}
         default:
             return state
     }

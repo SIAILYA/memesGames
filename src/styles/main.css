@@ -60,7 +60,7 @@ a:not(.non-und):hover::after {
 }
 
 .btn {
-    @apply bg-gradient-accent px-3 py-2 rounded-full transition text-white cursor-pointer hover:shadow-lg focus:scale-105 outline-0 focus:outline focus:outline-white active:scale-95
+    @apply bg-gradient-accent px-3 py-2 rounded-full transition text-white cursor-pointer hover:shadow-lg focus:scale-105 outline-0 focus:outline focus:outline-white active:scale-95 disabled:opacity-50 disabled:grayscale
 }
 
 .bg-gradient-accent {
@@ -83,4 +83,18 @@ a:not(.non-und):hover::after {
 .card {
     @apply shadow-straight p-3 rounded-xl;
     /*    TODO: Провести рефракторинг карточек*/
+}
+
+.toggle-checkbox:checked {
+    @apply right-0 border-accent-light;
+    right: 0;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    @apply bg-gradient-accent;
+}
+
+.round-avatar {
+    /*TODO: Рефракторинг аватаров*/
+    @apply rounded-full border border-gray-300 aspect-square overflow-hidden;
 }

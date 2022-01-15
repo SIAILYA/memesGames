@@ -1,6 +1,6 @@
-import {FETCH_USER_AVATAR, SET_USER_NAME} from "./types";
+import {FETCH_USER_AVATAR, SET_USER_NAME} from "../types";
 import axios from "axios";
-import {BACKEND} from "../config";
+import {BACKEND} from "../../config";
 
 export const setCurrentUserName = (newName) => {
     return {
@@ -15,7 +15,9 @@ export const fetchCurrentUserAvatar = () => {
 
         dispatch({
             type: FETCH_USER_AVATAR,
-            payload: response.data
+            payload: parseInt(response.data)
         })
     }
 }
+
+

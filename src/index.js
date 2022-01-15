@@ -18,6 +18,7 @@ import FAQ from "./views/FAQ";
 import StartGame from "./views/StartGame";
 import NotFound from "./views/NotFound";
 import GameBoard from "./views/GameBoard";
+import Lobby from "./views/Lobby";
 
 const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),
@@ -36,6 +37,7 @@ ReactDOM.render(
                         <Route path="/" element={<Home/>}/>
                         <Route path="/faq" element={<FAQ/>}/>
                         <Route path="/startgame" element={<StartGame/>}/>
+                        <Route path="/lobby" element={<Lobby/>}/>
                         <Route path="/gameboard" element={<GameBoard/>}/>
                         <Route path="*" status={404} element={<NotFound/>}/>
                     </Routes>
