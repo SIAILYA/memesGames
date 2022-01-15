@@ -17,6 +17,7 @@ import Menu from "./components/Menu";
 import FAQ from "./views/FAQ";
 import StartGame from "./views/StartGame";
 import NotFound from "./views/NotFound";
+import GameBoard from "./views/GameBoard";
 
 const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),
@@ -27,7 +28,7 @@ ReactDOM.render(
     <Provider store={store}>
         <div className="app pt-4 md:pt-8 pb-4">
             <BrowserRouter>
-                <header className="container px-2 mx-auto">
+                <header className="container px-3 mx-auto">
                     <Menu/>
                 </header>
                 <main className="page">
@@ -35,6 +36,7 @@ ReactDOM.render(
                         <Route path="/" element={<Home/>}/>
                         <Route path="/faq" element={<FAQ/>}/>
                         <Route path="/startgame" element={<StartGame/>}/>
+                        <Route path="/gameboard" element={<GameBoard/>}/>
                         <Route path="*" status={404} element={<NotFound/>}/>
                     </Routes>
                 </main>

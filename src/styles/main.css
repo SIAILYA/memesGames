@@ -11,6 +11,19 @@ html, body {
     font-family: Raleway, sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gradient-accent opacity-70 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply opacity-10;
+}
+
 .page {
     @apply container mt-5 mx-auto min-h-[75vh] md:min-h-[80vh];
 }
