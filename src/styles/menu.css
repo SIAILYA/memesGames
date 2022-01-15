@@ -1,3 +1,11 @@
 .nav-link {
     @apply transition-all text-base mx-1 mt-auto font-normal md:ml-2 md:mr-0;
 }
+
+.hide-navigation {
+    @apply w-0 overflow-hidden h-0 m-0 transition;
+}
+
+.hide-navigation .nav-link {
+    @apply w-0 overflow-hidden h-0 transition;
+}

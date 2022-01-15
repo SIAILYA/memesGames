@@ -1,12 +1,9 @@
 import PublicGame from "../components/PublicGame";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 import "../styles/startgame.css"
-
-import tutorial_call from "../assets/tutorial_call.png"
-import TutorialSlide from "../components/TutorialSlide";
 import TutorialSlideshow from "../components/TutorialSlideshow";
 
 function StartGame() {
