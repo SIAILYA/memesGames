@@ -5,11 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 import "../styles/startgame.css"
 import TutorialSlideshow from "../components/TutorialSlideshow";
-import axios from "axios";
-import {BACKEND} from "../config";
-import {createGame} from "../redux/actions/gameActions";
-import {hideLobbyCreatingSpinner, showLobbyCreatingSpinner} from "../redux/actions/appActions";
 import {connectRoom} from "../sockets/connectors";
+import {FETCH_CREATE_GAME} from "../redux/types";
 
 function StartGame() {
     const currentUserName = useSelector(state => state.currentUser.name)
@@ -31,10 +28,6 @@ function StartGame() {
         }
     }, [])
 
-    function initGame() {
-        dispatch(createGame(currentUserName, currentUserAvatar, () => {navigate("/lobby")}))
-    }
-
     function connect() {
         connectRoom(roomId, currentUserName, currentUserAvatar)
 
@@ -54,7 +47,9 @@ function StartGame() {
                                 <input type="text" className="form-control text-center w-full"
                                        placeholder="ID комнаты" onChange={(e) => setRoomId(e.target.value)}
                                 />
-                                <button className="btn aspect-square flex shadow-straight" onClick={() => {connect()}}><span
+                                <button className="btn aspect-square flex shadow-straight" onClick={() => {
+                                    connect()
+                                }}><span
                                     className="material-icons-outlined my-auto text-[20px]">chevron_right</span>
                                 </button>
                             </div>
@@ -66,11 +61,14 @@ function StartGame() {
                         </div>
                         <div className="grow mt-3 lg:m-0 text-lg">
                             <h3 className="font-semibold mb-2 whitespace-nowrap">Создай свою!</h3>
-                            <button onClick={() => {initGame()}} className="btn w-full">
+                            <button onClick={() => {dispatch({type: FETCH_CREATE_GAME})
+                            }}
+                                    className="btn w-full">
                                 {
                                     createLobbySpinner ?
-                                        <span className="material-icons-outlined animate-spin my-auto mx-auto">loop</span>
-                                    :
+                                        <span
+                                            className="material-icons-outlined animate-spin my-auto mx-auto">loop</span>
+                                        :
                                         "Создать"
                                 }
                             </button>

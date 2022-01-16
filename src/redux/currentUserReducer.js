@@ -2,7 +2,7 @@ import {FETCH_USER_AVATAR, SET_USER_ID, SET_USER_NAME} from "./types";
 
 const initialState = {
     avatar: 1,
-    name: "",
+    name: "Путин",
     userId: ""
 }
 

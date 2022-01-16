@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
+import {HistoryRouter as BrowserRouter} from "redux-first-history/rr6";
 
 import {Provider} from "react-redux"
-import {applyMiddleware, compose, createStore} from "redux";
-import thunk from "redux-thunk";
-
-import {rootReducer} from "./redux/rootReducer";
 
 import "./styles/main.css"
 
@@ -19,16 +16,13 @@ import StartGame from "./views/StartGame";
 import NotFound from "./views/NotFound";
 import GameBoard from "./views/GameBoard";
 import Lobby from "./views/Lobby";
+import {store, history} from "./store";
 
-const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-)
 
 ReactDOM.render(
     <Provider store={store}>
         <div className="app pt-4 md:pt-8 pb-4">
-            <BrowserRouter>
+            <BrowserRouter history={history}>
                 <header className="container px-3 mx-auto">
                     <Menu/>
                 </header>
@@ -43,7 +37,8 @@ ReactDOM.render(
                     </Routes>
                 </main>
                 <footer className="text-center pt-4">
-                    with <span className="material-icons-outlined text-xs text-red-400">favorite</span> by <a href="https://overcreated.ru" target="_blank" rel="noreferrer">overcreated</a>
+                    with <span className="material-icons-outlined text-xs text-red-400">favorite</span> by <a
+                    href="https://overcreated.ru" target="_blank" rel="noreferrer">overcreated</a>
                 </footer>
             </BrowserRouter>
         </div>
