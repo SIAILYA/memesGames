@@ -1,14 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import { createReduxHistoryContext, reachify } from "redux-first-history";
-import { createWouterHook } from "redux-first-history/wouter";
-import { createBrowserHistory } from "history";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import {composeWithDevTools, devToolsEnhancer} from "redux-devtools-extension";
+import {createReduxHistoryContext} from "redux-first-history";
+import {createBrowserHistory} from "history";
 import createSagaMiddleware from "redux-saga";
-import mySaga from "./redux/sagas/sagas";
+import mySaga from "./redux/sagas/rootSaga";
 import {currentUserReducer} from "./redux/currentUserReducer";
 import {appReducer} from "./redux/appReducer";
 import {gameReducer} from "./redux/gameReducer";
 import thunk from "redux-thunk";
+import {socketMiddleware} from "./redux/socketMiddleware";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,7 +16,11 @@ const {
     createReduxHistory,
     routerMiddleware,
     routerReducer
-} = createReduxHistoryContext({ history: createBrowserHistory() });
+} = createReduxHistoryContext({history: createBrowserHistory()});
+
+const composeEnhancers = composeWithDevTools({
+    actionCreators: true, trace:true
+});
 
 export const store = createStore(
     combineReducers({
@@ -25,7 +29,8 @@ export const store = createStore(
         app: appReducer,
         game: gameReducer
     }),
-    composeWithDevTools(
+    composeEnhancers(
+        applyMiddleware(socketMiddleware),
         applyMiddleware(sagaMiddleware),
         applyMiddleware(routerMiddleware),
         applyMiddleware(thunk),

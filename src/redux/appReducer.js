@@ -1,8 +1,15 @@
-import {HIDE_LOBBY_CREATING_SPINNER, HIDE_LOCK_SPINNER, SHOW_LOBBY_CREATING_SPINNER, SHOW_LOCK_SPINNER} from "./types";
+import {
+    CHANGE_INPUT_GAME_ID,
+    HIDE_LOBBY_CREATING_SPINNER,
+    HIDE_LOCK_SPINNER,
+    SHOW_LOBBY_CREATING_SPINNER,
+    SHOW_LOCK_SPINNER
+} from "./types";
 
 const initialState = {
     lockSpinner: false,
-    createLobbySpinner: false
+    createLobbySpinner: false,
+    inputGameId: ""
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -15,6 +22,8 @@ export const appReducer = (state = initialState, action) => {
             return {...state, createLobbySpinner: true}
         case HIDE_LOBBY_CREATING_SPINNER:
             return {...state, createLobbySpinner: false}
+        case CHANGE_INPUT_GAME_ID:
+            return {...state, inputGameId: action.payload}
         default:
             return state
     }

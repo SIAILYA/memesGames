@@ -1,22 +1,22 @@
 import PublicGame from "../components/PublicGame";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
 import "../styles/startgame.css"
 import TutorialSlideshow from "../components/TutorialSlideshow";
-import {connectRoom} from "../sockets/connectors";
-import {FETCH_CREATE_GAME} from "../redux/types";
+import {CREATE_GAME, JOIN_GAME} from "../redux/types";
+import {changeInputGameId} from "../redux/actions/appActions";
 
 function StartGame() {
     const currentUserName = useSelector(state => state.currentUser.name)
     const currentUserAvatar = useSelector(state => state.currentUser.avatar)
     const createLobbySpinner = useSelector(state => state.app.createLobbySpinner)
+    const inputGameId = useSelector(state => state.app.inputGameId)
 
     const dispatch = useDispatch()
     let navigate = useNavigate();
 
-    const [roomId, setRoomId] = useState("")
 
     useEffect(() => {
         if (!currentUserName) {
@@ -29,9 +29,8 @@ function StartGame() {
     }, [])
 
     function connect() {
-        connectRoom(roomId, currentUserName, currentUserAvatar)
-
-        navigate("/lobby")
+        console.log("connect to room " + inputGameId)
+        dispatch({type: JOIN_GAME})
     }
 
     return (
@@ -45,7 +44,8 @@ function StartGame() {
                             <h3 className="font-semibold mb-2">Залетай в комнату!</h3>
                             <div className="w-full flex form-btn-inline">
                                 <input type="text" className="form-control text-center w-full"
-                                       placeholder="ID комнаты" onChange={(e) => setRoomId(e.target.value)}
+                                       placeholder="ID комнаты" value={inputGameId}
+                                       onChange={(e) => dispatch(changeInputGameId(e.target.value))}
                                 />
                                 <button className="btn aspect-square flex shadow-straight" onClick={() => {
                                     connect()
@@ -61,7 +61,8 @@ function StartGame() {
                         </div>
                         <div className="grow mt-3 lg:m-0 text-lg">
                             <h3 className="font-semibold mb-2 whitespace-nowrap">Создай свою!</h3>
-                            <button onClick={() => {dispatch({type: FETCH_CREATE_GAME})
+                            <button onClick={() => {
+                                dispatch({type: CREATE_GAME})
                             }}
                                     className="btn w-full">
                                 {

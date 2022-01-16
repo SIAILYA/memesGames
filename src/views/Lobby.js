@@ -1,12 +1,16 @@
 import HelloCard from "../components/HelloCard";
 import Toggle from "../components/UI/Toggle";
 import LobbyPlayer from "../components/LobbyPlayer";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
+import {updateAllowForeign} from "../redux/actions/gameActions";
+import {UPDATE_SETTINGS} from "../redux/types";
 
 const Lobby = () => {
     const gameId = useSelector(state => state.game.gameId)
     const gamePlayers = useSelector(state => state.game.players)
+    const allowForeign = useSelector(state => state.game.settings.allowForeign)
+    const dispatch = useDispatch()
 
     const [copy, setCopy] = useState(false)
 
@@ -68,7 +72,7 @@ const Lobby = () => {
                     <div className="card mt-4">
                         <h2 className="header text-center">Настройки лобби</h2>
                         <div className="mt-3">
-                            <Toggle caption="Разрешить присоединяться посторонним людям"/>
+                            <Toggle state={allowForeign} onChange={(e) => {dispatch(updateAllowForeign(e.target.checked)); dispatch({type: UPDATE_SETTINGS})}} caption="Разрешить присоединяться посторонним людям"/>
                         </div>
                     </div>
                 </div>
