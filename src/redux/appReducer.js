@@ -1,7 +1,7 @@
 import {
     CHANGE_INPUT_GAME_ID,
     HIDE_LOBBY_CREATING_SPINNER,
-    HIDE_LOCK_SPINNER,
+    HIDE_LOCK_SPINNER, SET_OPEN_GAMES,
     SHOW_LOBBY_CREATING_SPINNER,
     SHOW_LOCK_SPINNER
 } from "./types";
@@ -9,7 +9,8 @@ import {
 const initialState = {
     lockSpinner: false,
     createLobbySpinner: false,
-    inputGameId: ""
+    inputGameId: "",
+    openGames: []
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -24,6 +25,8 @@ export const appReducer = (state = initialState, action) => {
             return {...state, createLobbySpinner: false}
         case CHANGE_INPUT_GAME_ID:
             return {...state, inputGameId: action.payload}
+        case SET_OPEN_GAMES:
+            return {...state, openGames: action.payload}
         default:
             return state
     }

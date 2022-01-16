@@ -1,4 +1,4 @@
-import {SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED, PLAYERS_UPDATED, UPDATE_SETTINGS} from "../types";
+import {PLAYERS_UPDATED, SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED} from "../types";
 
 export const setGameData = (gameData) => {
     console.log("Set game data")
