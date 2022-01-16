@@ -23,9 +23,9 @@ function StartGame() {
         if (!currentUserName) {
             navigate("/")
         } else {
-            window.onbeforeunload = () => {
-                return "Стой! Введенные данные не сохранятся при перезагрузке!"
-            }
+            // window.onbeforeunload = () => {
+            //     return "Стой! Введенные данные не сохранятся при перезагрузке!"
+            // }
         }
         dispatch({type: LOAD_OPEN_GAMES})
     }, [])

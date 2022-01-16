@@ -6,8 +6,6 @@ import {useNavigate} from "react-router-dom";
 import {fetchCurrentUserAvatar, setCurrentUserName} from "../redux/actions/currenUserActions";
 import FloatingMeme from "../components/FloatingMeme";
 
-import avatar from "../assets/avatar.jpg"
-
 import "../styles/background.css"
 
 const Home = () => {
@@ -48,20 +46,24 @@ const Home = () => {
                             <span className="material-icons-outlined m-auto text-">replay</span>
                         </button>
                         <div className="aspect-square rounded-full border-gray-300 border overflow-hidden">
-                            <img src={"/avatars/" + (currentUserAvatar) + ".jpg"} alt="" className="w-full h-full object-cover"/>
+                            <img src={"/avatars/" + (currentUserAvatar) + ".jpg"} alt=""
+                                 className="w-full h-full object-cover"/>
                         </div>
                     </div>
 
                     <div className="w-full md:ml-10 md:my-auto">
                         <input type="text" name="username" autoComplete="off" ref={nameInput}
                                value={currentUserName}
-                               onFocus={() => {nameInput.current.classList.remove("form-invalid")}}
+                               onFocus={() => {
+                                   nameInput.current.classList.remove("form-invalid")
+                               }}
                                onInput={(e) => dispatch(setCurrentUserName(e.currentTarget.value))}
                                className="form-control text-center mt-2 w-full" placeholder="Придумай имя"/>
                         <button className="mt-2 btn w-full text-lg transition shadow-straight" onClick={() => {
                             dispatch(setCurrentUserName(currentUserName.trim()))
                             if (currentUserName !== "") {
                                 console.log(currentUserName)
+                                //TODO: Редирект сразу в лобби
                                 navigate("/startgame")
                             } else {
                                 nameInput.current.focus()

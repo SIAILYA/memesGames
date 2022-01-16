@@ -98,3 +98,7 @@ a:not(.non-und):hover::after {
     /*TODO: Рефракторинг аватаров*/
     @apply rounded-full border border-gray-300 aspect-square overflow-hidden;
 }
+
+.avatar-accent-border{
+    @apply border-2 border-accent-light
+}

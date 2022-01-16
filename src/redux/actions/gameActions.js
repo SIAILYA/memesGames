@@ -1,4 +1,4 @@
-import {PLAYERS_UPDATED, SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED} from "../types";
+import {PLAYERS_UPDATED, SET_CURRENT_USER, SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED} from "../types";
 
 export const setGameData = (gameData) => {
     console.log("Set game data")
@@ -9,14 +9,18 @@ export const setGameData = (gameData) => {
             type: SET_GAME_DATA,
             payload: gameData.game
         })
+        dispatch({
+            type: SET_CURRENT_USER,
+            payload: gameData.player
+        })
     }
 }
 
-export const playerConnected = (player) => {
+export const playersUpdate = (players) => {
     return dispatch => {
         dispatch({
             type: PLAYERS_UPDATED,
-            payload: player
+            payload: players
         })
     }
 }

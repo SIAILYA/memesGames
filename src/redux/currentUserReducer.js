@@ -1,4 +1,4 @@
-import {FETCH_USER_AVATAR, SET_USER_ID, SET_USER_NAME} from "./types";
+import {FETCH_USER_AVATAR, SET_CURRENT_USER, SET_USER_ID, SET_USER_NAME} from "./types";
 
 const initialState = {
     avatar: Math.trunc(Math.random() * 5),
@@ -14,6 +14,8 @@ export const currentUserReducer = (state = initialState, action) => {
             return {...state, avatar: action.payload}
         case SET_USER_ID:
             return {...state, userId: action.payload}
+        case SET_CURRENT_USER:
+            return {...state, ...action.payload}
         default:
             return state
     }

@@ -4,24 +4,34 @@ import LobbyPlayer from "../components/LobbyPlayer";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {updateAllowForeign} from "../redux/actions/gameActions";
-import {UPDATE_SETTINGS} from "../redux/types";
+import {CHANGE_INPUT_GAME_ID, KICK_PLAYER, LOAD_OPEN_GAMES, UPDATE_SETTINGS} from "../redux/types";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 const Lobby = () => {
     const gameId = useSelector(state => state.game.gameId)
     const gamePlayers = useSelector(state => state.game.players)
     const allowForeign = useSelector(state => state.game.settings.allowForeign)
+    const currentUserName = useSelector(state => state.currentUser.name)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const [copy, setCopy] = useState(false)
 
     const copyGameInvite = () => {
-        navigator.clipboard.writeText("Давно тебя не было в MemesGames!\n\nЗаходи!\nhttps://memesgames.ru/invite?gameid=" + gameId)
+        navigator.clipboard.writeText("Давно тебя не было в MemesGames!\n\nЗаходи!\nhttps://memesgames.ru/lobby?gameid=" + gameId)
 
         setCopy(true)
     }
 
     useEffect(() => {
+        if (location.search && location.search.indexOf("gameid") !== -1) {
+            dispatch({type: CHANGE_INPUT_GAME_ID, payload: location.search.split("=")[1]})
+        }
 
+        if (!currentUserName) {
+            navigate("/")
+        }
     }, [])
 
     return (
@@ -29,14 +39,10 @@ const Lobby = () => {
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                 <div>
                     <HelloCard/>
-                    <div className="grid grid-cols-2 gap-4 mt-4">
+                    <div className="mt-4">
                         <button className="btn flex w-full text-center justify-center">
-                            <span className="material-icons-outlined mr-2 my-auto">logout</span>
-                            <span className="my-auto">Выход</span>
-                        </button>
-                        <button className="btn flex w-full text-center justify-center">
-                            <span className="material-icons-outlined mr-2 my-auto">delete</span>
-                            <span className="my-auto">Удалить лобби</span>
+                            <span className="material-icons-outlined mr-2 my-auto">play_arrow</span>
+                            <span className="my-auto">Старт</span>
                         </button>
                     </div>
                     <div className="card mt-4">
@@ -46,7 +52,8 @@ const Lobby = () => {
                             {
                                 gamePlayers.map(player => {
                                     return (<LobbyPlayer key={player._id} name={player.name} avatar={player.avatar}
-                                                         id={player._id}/>)
+                                                         isAdmin={player.admin}
+                                                         id={player._id} onKick={(playerId) => {dispatch({type: KICK_PLAYER, payload: playerId})}}/>)
                                 })
                             }
                         </div>
