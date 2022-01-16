@@ -3,7 +3,7 @@ import {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {fetchCurrentUserAvatar, setCurrentUserName} from "../redux/actions";
+import {fetchCurrentUserAvatar, setCurrentUserName} from "../redux/actions/currenUserActions";
 import FloatingMeme from "../components/FloatingMeme";
 
 import avatar from "../assets/avatar.jpg"
@@ -48,7 +48,7 @@ const Home = () => {
                             <span className="material-icons-outlined m-auto text-">replay</span>
                         </button>
                         <div className="aspect-square rounded-full border-gray-300 border overflow-hidden">
-                            <img src={currentUserAvatar || avatar} alt="" className="w-full h-full object-cover"/>
+                            <img src={"/avatars/" + (currentUserAvatar) + ".jpg"} alt="" className="w-full h-full object-cover"/>
                         </div>
                     </div>
 

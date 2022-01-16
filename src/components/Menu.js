@@ -3,11 +3,10 @@ import {NavLink, useLocation} from "react-router-dom";
 import "../styles/menu.css"
 import {useRef} from "react";
 
-const blockNavigationPaths = ["/gameboard"]
+const blockNavigationPaths = ["/gameboard", "/lobby"]
 
 function Menu() {
     const navigation = useLocation()
-
 
     return (
         <div className="text-center md:flex text-left py-4">
