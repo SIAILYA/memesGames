@@ -2,7 +2,7 @@ import HelloCard from "../components/HelloCard";
 import Toggle from "../components/UI/Toggle";
 import LobbyPlayer from "../components/LobbyPlayer";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {updateAllowForeign} from "../redux/actions/gameActions";
 import {UPDATE_SETTINGS} from "../redux/types";
 
@@ -19,6 +19,10 @@ const Lobby = () => {
 
         setCopy(true)
     }
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div className="px-3">

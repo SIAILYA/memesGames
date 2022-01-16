@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import "../styles/startgame.css"
 import TutorialSlideshow from "../components/TutorialSlideshow";
-import {CREATE_GAME, JOIN_GAME} from "../redux/types";
+import {CREATE_GAME, JOIN_GAME, LOAD_OPEN_GAMES} from "../redux/types";
 import {changeInputGameId} from "../redux/actions/appActions";
 
 function StartGame() {
@@ -13,6 +13,7 @@ function StartGame() {
     const currentUserAvatar = useSelector(state => state.currentUser.avatar)
     const createLobbySpinner = useSelector(state => state.app.createLobbySpinner)
     const inputGameId = useSelector(state => state.app.inputGameId)
+    const openGames = useSelector(state => state.app.openGames)
 
     const dispatch = useDispatch()
     let navigate = useNavigate();
@@ -26,6 +27,7 @@ function StartGame() {
                 return "Стой! Введенные данные не сохранятся при перезагрузке!"
             }
         }
+        dispatch({type: LOAD_OPEN_GAMES})
     }, [])
 
     function connect() {
@@ -80,7 +82,14 @@ function StartGame() {
                     <h2 className="text-accent-dark mb-3 font-semibold text-lg lg:text-2xl">Присоединяйся к открытым
                         комнатам!</h2>
                     <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-3">
-                        <PublicGame/>
+                        {
+                            //TODO: Заглушка если нет игр и спиннер
+                            openGames.map(game => {
+                                return (
+                                    <PublicGame key={game.gameId} state={game.status} gameID={game.gameId} playersCount={game.players.length}/>
+                                )
+                            })
+                        }
                     </div>
                 </div>
             </div>
