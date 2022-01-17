@@ -17,6 +17,7 @@ export const SET_GAME_DATA = "GAME/SET_GAME_DATA"
 export const SET_CURRENT_USER = "GAME/SET_CURRENT_USER"
 
 export const PLAYERS_UPDATED = "GAME/PLAYERS_UPDATED"
+export const SET_GAME_READY = "APP/SET_GAME_READY" // Кароче если true - редирект будет сразу в лобби
 
 export const KICK_PLAYER = "GAME/KICK_PLAYER"
 
@@ -27,3 +28,7 @@ export const SET_GS_ALLOW_FOREIGN = "GAME/SETTINGS/ALLOW_FOREIGN"
 
 export const LOAD_OPEN_GAMES = "APP/LOAD_OPEN_GAMES"
 export const SET_OPEN_GAMES = "APP/SET_OPEN_GAMES"
+
+export const START_GAME = "GAME/START_GAME"
+
+export const SET_GAME_TIMER = "GAME/SET_GAME_TIMER"

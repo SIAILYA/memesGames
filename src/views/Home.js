@@ -7,11 +7,13 @@ import {fetchCurrentUserAvatar, setCurrentUserName} from "../redux/actions/curre
 import FloatingMeme from "../components/FloatingMeme";
 
 import "../styles/background.css"
+import {JOIN_GAME} from "../redux/types";
 
 const Home = () => {
     const dispatch = useDispatch()
     const currentUserName = useSelector(state => state.currentUser.name)
     const currentUserAvatar = useSelector(state => state.currentUser.avatar)
+    const gameReady = useSelector(state => state.app.gameReady)
     let navigate = useNavigate();
     const nameInput = useRef()
 
@@ -62,9 +64,13 @@ const Home = () => {
                         <button className="mt-2 btn w-full text-lg transition shadow-straight" onClick={() => {
                             dispatch(setCurrentUserName(currentUserName.trim()))
                             if (currentUserName !== "") {
-                                console.log(currentUserName)
-                                //TODO: Редирект сразу в лобби
-                                navigate("/startgame")
+                                console.log("gameready ", gameReady)
+                                if (gameReady) {
+                                    console.log(213)
+                                    dispatch({type: JOIN_GAME})
+                                } else {
+                                    navigate("/startgame")
+                                }
                             } else {
                                 nameInput.current.focus()
                                 nameInput.current.classList.add("form-invalid")

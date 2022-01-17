@@ -2,7 +2,7 @@ import {LOCATION_CHANGE} from "redux-first-history";
 import {all, call, put, select, takeEvery} from "redux-saga/effects";
 import {openGamesLoader, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
 import {socket} from "../socket";
-import {CREATE_GAME, JOIN_GAME, KICK_PLAYER, LOAD_OPEN_GAMES, UPDATE_SETTINGS} from "../types";
+import {CREATE_GAME, JOIN_GAME, KICK_PLAYER, LOAD_OPEN_GAMES, START_GAME, UPDATE_SETTINGS} from "../types";
 
 
 export default function* rootSaga() {
@@ -13,6 +13,7 @@ export default function* rootSaga() {
             takeEvery(JOIN_GAME, joinGameWorker),
             takeEvery(LOAD_OPEN_GAMES, loadOpenGamesWorker),
             takeEvery(KICK_PLAYER, kickPlayerWorker),
+            takeEvery(START_GAME, startGameWorker),
         ]
     )
 }
@@ -47,4 +48,8 @@ function* loadOpenGamesWorker() {
 
 function* kickPlayerWorker({payload}) {
     yield socket.emit("kick_player", payload)
+}
+
+function* startGameWorker() {
+    yield socket.emit("start_game")
 }

@@ -15,3 +15,19 @@
         width: 100%;
     }
 }
+
+@keyframes game-state-indicator {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+.run-timer {
+    animation-name: game-state-indicator;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+}

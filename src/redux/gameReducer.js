@@ -1,4 +1,4 @@
-import {SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED, PLAYERS_UPDATED} from "./types";
+import {SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED, PLAYERS_UPDATED, SET_GAME_TIMER} from "./types";
 
 const initialState = {
     gameId: "",
@@ -7,7 +7,8 @@ const initialState = {
     status: "",
     settings: {
         allowForeign: true
-    }
+    },
+    timer: 5000,
 }
 
 export const gameReducer = (state = initialState, action) => {
@@ -20,6 +21,8 @@ export const gameReducer = (state = initialState, action) => {
             return {...state, settings: action.payload}
         case SET_GS_ALLOW_FOREIGN:
             return {...state, settings: {...state.settings, allowForeign: action.payload}}
+        case SET_GAME_TIMER:
+            return {...state, timer: action.payload.timer}
         default:
             return state
     }

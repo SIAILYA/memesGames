@@ -1,8 +1,9 @@
 import {FETCH_USER_AVATAR, SET_CURRENT_USER, SET_USER_ID, SET_USER_NAME} from "./types";
 
 const initialState = {
-    avatar: Math.trunc(Math.random() * 5),
+    avatar: Math.trunc(Math.random() * 5) + 1,
     name: "Путин-" + Math.trunc(Math.random() * 10),
+    // name: "",
     userId: ""
 }
 

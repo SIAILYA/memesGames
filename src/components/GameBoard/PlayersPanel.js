@@ -1,16 +1,20 @@
 import PlayerCard from "./PlayerCard";
+import {useSelector} from "react-redux";
 
-const playersPanel = () => {
+const PlayersPanel = () => {
+    const players = useSelector(state => state.game.players)
+
     return (
         <div>
             <div className="w-full max-h-[50vh] overflow-auto card hidden lg:block">
                 <div className="">
-                    <PlayerCard name="Путин123 123"/>
-                    <PlayerCard name="Путин123 123"/>
-                    <PlayerCard name="Путин123 123"/>
-                    <PlayerCard name="Путин123 123"/>
-                    <PlayerCard name="Путин123 123"/>
-                    <PlayerCard name="Путин123 123"/>
+                    {
+                        players.map(player => {
+                            return (
+                                <PlayerCard name={player.name} isAdmin={player.admin} avatar={player.avatar} isLead={player.isLead} score={player.score}/>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <div className="lg:hidden">
@@ -25,4 +29,4 @@ const playersPanel = () => {
     )
 }
 
-export default playersPanel;
+export default PlayersPanel;

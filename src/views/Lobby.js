@@ -4,14 +4,15 @@ import LobbyPlayer from "../components/LobbyPlayer";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {updateAllowForeign} from "../redux/actions/gameActions";
-import {CHANGE_INPUT_GAME_ID, KICK_PLAYER, LOAD_OPEN_GAMES, UPDATE_SETTINGS} from "../redux/types";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {CHANGE_INPUT_GAME_ID, KICK_PLAYER, SET_GAME_READY, START_GAME, UPDATE_SETTINGS} from "../redux/types";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Lobby = () => {
     const gameId = useSelector(state => state.game.gameId)
     const gamePlayers = useSelector(state => state.game.players)
     const allowForeign = useSelector(state => state.game.settings.allowForeign)
     const currentUserName = useSelector(state => state.currentUser.name)
+    const isAdmin = useSelector(state => state.currentUser.isAdmin)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
@@ -27,6 +28,7 @@ const Lobby = () => {
     useEffect(() => {
         if (location.search && location.search.indexOf("gameid") !== -1) {
             dispatch({type: CHANGE_INPUT_GAME_ID, payload: location.search.split("=")[1]})
+            dispatch({type: SET_GAME_READY})
         }
 
         if (!currentUserName) {
@@ -40,7 +42,12 @@ const Lobby = () => {
                 <div>
                     <HelloCard/>
                     <div className="mt-4">
-                        <button className="btn flex w-full text-center justify-center">
+                        <button
+                            className="btn flex w-full text-center justify-center"
+                            disabled={!isAdmin}
+                            onClick={() => {
+                                dispatch({type: START_GAME})
+                            }}>
                             <span className="material-icons-outlined mr-2 my-auto">play_arrow</span>
                             <span className="my-auto">Старт</span>
                         </button>
@@ -53,7 +60,9 @@ const Lobby = () => {
                                 gamePlayers.map(player => {
                                     return (<LobbyPlayer key={player._id} name={player.name} avatar={player.avatar}
                                                          isAdmin={player.admin}
-                                                         id={player._id} onKick={(playerId) => {dispatch({type: KICK_PLAYER, payload: playerId})}}/>)
+                                                         id={player._id} onKick={(playerId) => {
+                                        dispatch({type: KICK_PLAYER, payload: playerId})
+                                    }}/>)
                                 })
                             }
                         </div>
@@ -83,7 +92,10 @@ const Lobby = () => {
                     <div className="card mt-4">
                         <h2 className="header text-center">Настройки лобби</h2>
                         <div className="mt-3">
-                            <Toggle state={allowForeign} onChange={(e) => {dispatch(updateAllowForeign(e.target.checked)); dispatch({type: UPDATE_SETTINGS})}} caption="Разрешить присоединяться посторонним людям"/>
+                            <Toggle state={allowForeign} onChange={(e) => {
+                                dispatch(updateAllowForeign(e.target.checked));
+                                dispatch({type: UPDATE_SETTINGS})
+                            }} caption="Разрешить присоединяться посторонним людям"/>
                         </div>
                     </div>
                 </div>

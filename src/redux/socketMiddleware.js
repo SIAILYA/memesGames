@@ -2,6 +2,7 @@ import {setGameData, playersUpdate, settingsUpdated} from "./actions/gameActions
 import {socket} from "./socket";
 import {push} from "redux-first-history";
 import {hideLobbyCreatingSpinner} from "./actions/appActions";
+import {SET_GAME_TIMER} from "./types";
 
 export const socketMiddleware = (store) => {
 
@@ -54,6 +55,14 @@ export const socketMiddleware = (store) => {
         console.log(settings)
 
         store.dispatch(settingsUpdated(settings))
+    })
+
+    socket.on("game_started", (timer) => {
+        console.log("Game started")
+        console.log(timer)
+
+        store.dispatch({type: SET_GAME_TIMER, payload: timer})
+        store.dispatch(push("/gameboard"))
     })
 
     return (next) => (action) => {

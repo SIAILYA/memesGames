@@ -1,6 +1,6 @@
 import TextCard from "./TextCard";
 
-const PlayersAnswers = ({showAnswers=true}) => {
+const PlayersAnswers = ({showAnswers=false}) => {
     return (
         <div className={"transition-all px-3 " + (showAnswers ? "h-56 overflow-x-auto" : "h-0 overflow-hidden")}>
             <h2 className="text-center text-gray-500 mb-3">Отеты</h2>
