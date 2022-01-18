@@ -1,7 +1,7 @@
 import {
     CHANGE_INPUT_GAME_ID,
     HIDE_LOBBY_CREATING_SPINNER,
-    HIDE_LOCK_SPINNER, LOAD_OPEN_GAMES, SET_OPEN_GAMES,
+    HIDE_LOCK_SPINNER, FETCH_OPEN_GAMES, SET_OPEN_GAMES,
     SHOW_LOBBY_CREATING_SPINNER,
     SHOW_LOCK_SPINNER
 } from "../types";
@@ -42,7 +42,7 @@ export const changeInputGameId = (newGameId) => {
 export const loadOpenGames = () => {
     return dispatch => {
         dispatch({
-            type: LOAD_OPEN_GAMES
+            type: FETCH_OPEN_GAMES
         })
     }
 }
@@ -56,7 +56,7 @@ export const setOpenGames = (games) => {
     }
 }
 
-export async function openGamesLoader() {
+export async function fetchOpenGames() {
     return (await axios.get(BACKEND + "/api/opengames")).data
 }
 

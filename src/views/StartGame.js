@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import "../styles/startgame.css"
 import TutorialSlideshow from "../components/TutorialSlideshow";
-import {CREATE_GAME, JOIN_GAME, LOAD_OPEN_GAMES} from "../redux/types";
+import {CREATE_GAME, JOIN_GAME, FETCH_OPEN_GAMES} from "../redux/types";
 import {changeInputGameId} from "../redux/actions/appActions";
 
 function StartGame() {
@@ -27,7 +27,7 @@ function StartGame() {
             //     return "Стой! Введенные данные не сохранятся при перезагрузке!"
             // }
         }
-        dispatch({type: LOAD_OPEN_GAMES})
+        dispatch({type: FETCH_OPEN_GAMES})
     }, [])
 
     function connect() {

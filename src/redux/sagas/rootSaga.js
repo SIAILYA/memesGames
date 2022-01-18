@@ -1,13 +1,13 @@
 import {LOCATION_CHANGE} from "redux-first-history";
 import {all, call, put, select, takeEvery} from "redux-saga/effects";
-import {fetchRandomMemeText, openGamesLoader, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
+import {fetchRandomMemeText, fetchOpenGames, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
 import {socket} from "../socket";
 import {
     CREATE_GAME,
     FETCH_RANDOM_MEME_TEXT,
     JOIN_GAME,
     KICK_PLAYER,
-    LOAD_OPEN_GAMES, SET_RANDOM_MEME_TEXT,
+    FETCH_OPEN_GAMES, SET_RANDOM_MEME_TEXT,
     START_GAME,
     UPDATE_SETTINGS
 } from "../types";
@@ -19,7 +19,7 @@ export default function* rootSaga() {
             takeEvery(LOCATION_CHANGE, changeLocation),
             takeEvery(CREATE_GAME, createGameWorker),
             takeEvery(JOIN_GAME, joinGameWorker),
-            takeEvery(LOAD_OPEN_GAMES, loadOpenGamesWorker),
+            takeEvery(FETCH_OPEN_GAMES, fetchOpenGamesWorker),
             takeEvery(KICK_PLAYER, kickPlayerWorker),
             takeEvery(START_GAME, startGameWorker),
             takeEvery(FETCH_RANDOM_MEME_TEXT, fetchRandomMemeTextWorker),
@@ -50,8 +50,8 @@ function* updateSettingsWorker() {
     yield socket.emit("change_settings", {settings: settings})
 }
 
-function* loadOpenGamesWorker() {
-    const games = yield call(openGamesLoader)
+function* fetchOpenGamesWorker() {
+    const games = yield call(fetchOpenGames)
     yield put(setOpenGames(games))
 }
 
