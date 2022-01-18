@@ -1,8 +1,8 @@
-import GameBoardMemes from "../components/GameboardMemes/GameBoardMemes";
+import GameBoardTextToPicture from "../components/GameboardTextForPicture/GameBoardTextToPicture";
 
 const GameBoard = () => {
     return (
-        <GameBoardMemes/>
+        <GameBoardTextToPicture/>
     )
 }
 

@@ -1,6 +1,6 @@
 import PlayerAcceptAvatar from "./PlayerAcceptAvatar";
 
-const AcceptedPlayer = () => {
+const AcceptedPlayers = () => {
     return (
         <div className="h-8">
             <PlayerAcceptAvatar/>
@@ -10,4 +10,4 @@ const AcceptedPlayer = () => {
     )
 }
 
-export default AcceptedPlayer;
+export default AcceptedPlayers;

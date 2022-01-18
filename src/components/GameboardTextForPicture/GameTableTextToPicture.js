@@ -1,9 +1,9 @@
 import meme from "../../assets/meme1.jpg"
 import UserCards from "../GameBoard/UserCards";
-import AcceptedPlayer from "../GameBoard/AcceptedPlayer";
+import AcceptedPlayers from "../GameBoard/AcceptedPlayers";
 import PlayersAnswers from "../GameBoard/PlayersAnswers";
 
-const GameTable = () => {
+const GameTableTextToPicture = () => {
     return (
         <div className="mx-auto mt-4">
             <div
@@ -11,7 +11,7 @@ const GameTable = () => {
                 <img src={meme} className="object-cover w-full" alt=""/>
             </div>
             <div className="mx-auto flex justify-center mt-3">
-                <AcceptedPlayer/>
+                <AcceptedPlayers/>
             </div>
             <div className="mt-6">
                 <PlayersAnswers/>
@@ -23,4 +23,4 @@ const GameTable = () => {
     )
 }
 
-export default GameTable;
+export default GameTableTextToPicture;
