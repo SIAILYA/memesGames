@@ -1,8 +1,16 @@
 import {LOCATION_CHANGE} from "redux-first-history";
 import {all, call, put, select, takeEvery} from "redux-saga/effects";
-import {openGamesLoader, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
+import {fetchRandomMemeText, openGamesLoader, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
 import {socket} from "../socket";
-import {CREATE_GAME, JOIN_GAME, KICK_PLAYER, LOAD_OPEN_GAMES, START_GAME, UPDATE_SETTINGS} from "../types";
+import {
+    CREATE_GAME,
+    FETCH_RANDOM_MEME_TEXT,
+    JOIN_GAME,
+    KICK_PLAYER,
+    LOAD_OPEN_GAMES, SET_RANDOM_MEME_TEXT,
+    START_GAME,
+    UPDATE_SETTINGS
+} from "../types";
 
 
 export default function* rootSaga() {
@@ -14,6 +22,7 @@ export default function* rootSaga() {
             takeEvery(LOAD_OPEN_GAMES, loadOpenGamesWorker),
             takeEvery(KICK_PLAYER, kickPlayerWorker),
             takeEvery(START_GAME, startGameWorker),
+            takeEvery(FETCH_RANDOM_MEME_TEXT, fetchRandomMemeTextWorker),
         ]
     )
 }
@@ -52,4 +61,9 @@ function* kickPlayerWorker({payload}) {
 
 function* startGameWorker() {
     yield socket.emit("start_game")
+}
+
+function* fetchRandomMemeTextWorker() {
+    const items = yield call(fetchRandomMemeText)
+    yield put({type: SET_RANDOM_MEME_TEXT, payload: items})
 }

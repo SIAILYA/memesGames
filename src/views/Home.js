@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
@@ -7,15 +7,23 @@ import {fetchCurrentUserAvatar, setCurrentUserName} from "../redux/actions/curre
 import FloatingMeme from "../components/FloatingMeme";
 
 import "../styles/background.css"
-import {JOIN_GAME} from "../redux/types";
+import {FETCH_RANDOM_MEME_TEXT, JOIN_GAME} from "../redux/types";
 
 const Home = () => {
     const dispatch = useDispatch()
     const currentUserName = useSelector(state => state.currentUser.name)
     const currentUserAvatar = useSelector(state => state.currentUser.avatar)
     const gameReady = useSelector(state => state.app.gameReady)
+    const randomMemeText = useSelector(state => state.app.randomMemeText)
+
     let navigate = useNavigate();
     const nameInput = useRef()
+
+    useEffect(() => {
+        if (!randomMemeText.pictures.length) {
+            dispatch({type: FETCH_RANDOM_MEME_TEXT})
+        }
+    }, [])
 
     return (
         <div className="text-center container px-3 pt-5">
@@ -95,10 +103,18 @@ const Home = () => {
                         <li/>
                     </ul>
                 </div>
-
-                <FloatingMeme className="hidden md:block top-44 left-12" id="fm-1"/>
-                <FloatingMeme className="hidden md:block top-80 right-20" id="fm-2"/>
-                <FloatingMeme className="hidden md:block bottom-32 left-56" id="fm-3"/>
+                {
+                    randomMemeText.pictures.map((_, index) => {
+                        return (
+                            <FloatingMeme
+                                key={index}
+                                pic={randomMemeText.pictures[index].filename}
+                                caption={randomMemeText.texts[index].text}
+                                className="hidden md:block"
+                                id={"fm-" + (index + 1)}/>
+                        )
+                    })
+                }
             </div>
         </div>
     );

@@ -59,3 +59,7 @@ export const setOpenGames = (games) => {
 export async function openGamesLoader() {
     return (await axios.get(BACKEND + "/api/opengames")).data
 }
+
+export async function fetchRandomMemeText() {
+    return (await axios.get(BACKEND + "/api/random_meme_text")).data
+}

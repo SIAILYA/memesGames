@@ -23,14 +23,20 @@
 #fm-1 {
     -webkit-animation-delay: -5s;
     animation-delay: -5s;
+    top: 25%;
+    left: 3%;
 }
 
 #fm-2 {
     -webkit-animation-delay: -8s;
     animation-delay: -8s;
+    top: 46%;
+    right: 7%;
 }
 
 #fm-3 {
     -webkit-animation-delay: -3s;
     animation-delay: -3s;
+    bottom: 12%;
+    left: 5%;
 }

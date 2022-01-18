@@ -1,7 +1,7 @@
 import {
     CHANGE_INPUT_GAME_ID,
     HIDE_LOBBY_CREATING_SPINNER,
-    HIDE_LOCK_SPINNER, SET_GAME_READY, SET_OPEN_GAMES,
+    HIDE_LOCK_SPINNER, SET_GAME_READY, SET_OPEN_GAMES, SET_RANDOM_MEME_TEXT,
     SHOW_LOBBY_CREATING_SPINNER,
     SHOW_LOCK_SPINNER
 } from "./types";
@@ -11,7 +11,8 @@ const initialState = {
     createLobbySpinner: false,
     inputGameId: "",
     openGames: [],
-    gameReady: false
+    gameReady: false, // Если true - то редиркет сразу в лобби, без StartGame
+    randomMemeText: {pictures: [], texts: []}
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -30,6 +31,8 @@ export const appReducer = (state = initialState, action) => {
             return {...state, openGames: action.payload}
         case SET_GAME_READY:
             return {...state, gameReady: true}
+        case SET_RANDOM_MEME_TEXT:
+            return {...state, randomMemeText: action.payload}
         default:
             return state
     }
