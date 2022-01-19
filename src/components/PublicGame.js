@@ -1,6 +1,10 @@
 import {declOfNum} from "../utils";
+import {CHANGE_INPUT_GAME_ID, JOIN_GAME} from "../redux/types";
+import {useDispatch} from "react-redux";
 
 export default ({gameID, playersCount, state}) => {
+    const dispatch = useDispatch()
+
     return (
         <div className="shadow-straight w-full p-3 rounded-xl">
             <h2 className="font-semibold">#{gameID}</h2>
@@ -13,7 +17,12 @@ export default ({gameID, playersCount, state}) => {
                 <span>{state}</span>
             </div>
 
-            <div className="btn mt-3">Присоединиться</div>
+            <button onClick={() => {
+                dispatch({type: CHANGE_INPUT_GAME_ID, payload: gameID})
+                dispatch({type: JOIN_GAME})
+            }}
+                    className="btn mt-3">Присоединиться
+            </button>
         </div>
     )
 }

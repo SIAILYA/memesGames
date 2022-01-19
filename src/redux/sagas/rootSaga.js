@@ -1,13 +1,28 @@
 import {LOCATION_CHANGE} from "redux-first-history";
 import {all, call, put, select, takeEvery} from "redux-saga/effects";
-import {fetchRandomMemeText, fetchOpenGames, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
+import {
+    fetchOpenGames,
+    fetchPlayCards,
+    fetchRandomMemeText,
+    setOpenGames,
+    showLobbyCreatingSpinner
+} from "../actions/appActions";
 import {socket} from "../socket";
 import {
     CREATE_GAME,
-    FETCH_RANDOM_MEME_TEXT,
+    FETCH_OPEN_GAMES,
+    FETCH_RANDOM_MEME_TEXT, HIDE_ANSWERS,
+    HIDE_OPEN_GAMES_SPINNER,
     JOIN_GAME,
-    KICK_PLAYER,
-    FETCH_OPEN_GAMES, SET_RANDOM_MEME_TEXT,
+    KICK_PLAYER, RESET_ROUND,
+    ROUND_STARTED,
+    SELECT_BEST_ANSWER,
+    SET_PLAY_CARDS,
+    SET_RANDOM_MEME_TEXT,
+    SET_ROUND_PAYLOAD,
+    SET_USER_ANSWER,
+    SHOW_CARDS,
+    SHOW_OPEN_GAMES_SPINNER,
     START_GAME,
     UPDATE_SETTINGS
 } from "../types";
@@ -23,6 +38,10 @@ export default function* rootSaga() {
             takeEvery(KICK_PLAYER, kickPlayerWorker),
             takeEvery(START_GAME, startGameWorker),
             takeEvery(FETCH_RANDOM_MEME_TEXT, fetchRandomMemeTextWorker),
+            takeEvery(SHOW_CARDS, fetchPlayCardsWorker),
+            takeEvery(ROUND_STARTED, roundStartedWorker),
+            takeEvery(SET_USER_ANSWER, answerWorker),
+            takeEvery(SELECT_BEST_ANSWER, bestAnswerWorker),
         ]
     )
 }
@@ -51,8 +70,10 @@ function* updateSettingsWorker() {
 }
 
 function* fetchOpenGamesWorker() {
+    yield put({type: SHOW_OPEN_GAMES_SPINNER})
     const games = yield call(fetchOpenGames)
     yield put(setOpenGames(games))
+    yield put({type: HIDE_OPEN_GAMES_SPINNER})
 }
 
 function* kickPlayerWorker({payload}) {
@@ -66,4 +87,26 @@ function* startGameWorker() {
 function* fetchRandomMemeTextWorker() {
     const items = yield call(fetchRandomMemeText)
     yield put({type: SET_RANDOM_MEME_TEXT, payload: items})
+}
+
+function* fetchPlayCardsWorker() {
+    const gameMode = yield select(state => state.game.mode)
+    const cards = yield call(fetchPlayCards, gameMode)
+    yield put({type: SET_PLAY_CARDS, payload: cards.cards})
+}
+
+function* answerWorker({payload}) {
+    yield socket.emit("answer", payload)
+}
+
+function* roundStartedWorker({payload}) {
+    yield put({type: RESET_ROUND})
+    yield put({type: HIDE_ANSWERS})
+    yield put({type: SET_ROUND_PAYLOAD, payload: payload.roundPayload})
+}
+
+function* bestAnswerWorker({payload}) {
+    console.log(payload)
+
+    yield socket.emit("select_best_answer", payload)
 }

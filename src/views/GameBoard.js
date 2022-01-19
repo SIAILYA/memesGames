@@ -1,8 +1,8 @@
-import GameBoardTextToPicture from "../components/GameboardTextForPicture/GameBoardTextToPicture";
+import GameBoard from "../components/GameBoard/GameBoard";
 
 const GameBoard = () => {
     return (
-        <GameBoardTextToPicture/>
+        <GameBoard/>
     )
 }
 

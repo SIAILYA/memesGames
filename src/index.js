@@ -16,7 +16,7 @@ import StartGame from "./views/StartGame";
 import NotFound from "./views/NotFound";
 import Lobby from "./views/Lobby";
 import {history, store} from "./store";
-import GameBoardTextToPicture from "./components/GameboardTextForPicture/GameBoardTextToPicture";
+import GameBoard from "./components/GameBoard/GameBoard";
 
 
 ReactDOM.render(
@@ -32,7 +32,7 @@ ReactDOM.render(
                         <Route path="/faq" element={<FAQ/>}/>
                         <Route path="/startgame" element={<StartGame/>}/>
                         <Route path="/lobby" element={<Lobby/>}/>
-                        <Route path="/gameboard/texttomeme" element={<GameBoardTextToPicture/>}/>
+                        <Route path="/gameboard/texttomeme" element={<GameBoard/>}/>
                         <Route path="*" status={404} element={<NotFound/>}/>
                     </Routes>
                 </main>

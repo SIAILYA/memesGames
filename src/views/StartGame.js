@@ -5,8 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 
 import "../styles/startgame.css"
 import TutorialSlideshow from "../components/TutorialSlideshow";
-import {CREATE_GAME, JOIN_GAME, FETCH_OPEN_GAMES} from "../redux/types";
+import {CREATE_GAME, FETCH_OPEN_GAMES, JOIN_GAME} from "../redux/types";
 import {changeInputGameId} from "../redux/actions/appActions";
+import Spinner from "../components/UI/Spinner";
 
 function StartGame() {
     const currentUserName = useSelector(state => state.currentUser.name)
@@ -14,6 +15,7 @@ function StartGame() {
     const createLobbySpinner = useSelector(state => state.app.createLobbySpinner)
     const inputGameId = useSelector(state => state.app.inputGameId)
     const openGames = useSelector(state => state.app.openGames)
+    const openGamesSpinner = useSelector(state => state.app.fetchOpenGamesSpinner)
 
     const dispatch = useDispatch()
     let navigate = useNavigate();
@@ -23,9 +25,9 @@ function StartGame() {
         if (!currentUserName) {
             navigate("/")
         } else {
-            // window.onbeforeunload = () => {
-            //     return "Стой! Введенные данные не сохранятся при перезагрузке!"
-            // }
+            window.onbeforeunload = () => {
+                return "Стой! Введенные данные не сохранятся при перезагрузке!"
+            }
         }
         dispatch({type: FETCH_OPEN_GAMES})
     }, [])
@@ -83,12 +85,22 @@ function StartGame() {
                         комнатам!</h2>
                     <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-3">
                         {
-                            //TODO: Заглушка если нет игр и спиннер
-                            openGames.map(game => {
-                                return (
-                                    <PublicGame key={game.gameId} state={game.status} gameID={game.gameId} playersCount={game.players.length}/>
-                                )
-                            })
+                            openGamesSpinner ?
+                                <div className="col-span-12 flex">
+                                    <Spinner className="mx-auto"/>
+                                </div> :
+                                openGames.length > 0 ?
+                                    openGames.map(game => {
+                                        return (
+                                            <PublicGame key={game.gameId} state={game.status} gameID={game.gameId}
+                                                        playersCount={game.players.length}/>
+                                        )
+                                    }) :
+                                    <div className="col-span-12 text-center">
+                                        <span className="material-icons-outlined text-5xl animate-pulse text-transparent bg-clip-text bg-gradient-accent">sync</span>
+                                        <br/>
+                                        <span className="text-xl font-normal">Увы, открытых игр нет :(</span>
+                                    </div>
                         }
                     </div>
                 </div>

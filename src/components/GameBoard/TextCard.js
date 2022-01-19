@@ -1,4 +1,4 @@
-const TextCard = ({text, isSelected, disableChoose, canHover=true}) => {
+const TextCard = ({text, isSelected, disableChoose, className, canHover=true, index, onClick}) => {
     const generateClass = () => {
         let res = ""
 
@@ -18,7 +18,8 @@ const TextCard = ({text, isSelected, disableChoose, canHover=true}) => {
     }
 
     return (
-        <div className={"card flex text-center transition-all " + (generateClass())}>
+        //FIXME: Мерцание карт при появлении
+        <div onClick={disableChoose ? () => {} : onClick} className={"card flex text-center transition-all " + (generateClass()) + className} style={{animationDelay: index * 200 + "ms"}}>
             <span className="m-auto">
                 {text}
             </span>

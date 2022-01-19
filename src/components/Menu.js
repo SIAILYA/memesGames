@@ -3,7 +3,7 @@ import {NavLink, useLocation} from "react-router-dom";
 import "../styles/menu.css"
 import {useRef} from "react";
 
-const blockNavigationPaths = ["/gameboard", "/lobby"]
+const blockNavigationPaths = ["/gameboard/texttomeme", "/lobby"]
 
 function Menu() {
     const navigation = useLocation()

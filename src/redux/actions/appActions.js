@@ -63,3 +63,7 @@ export async function fetchOpenGames() {
 export async function fetchRandomMemeText() {
     return (await axios.get(BACKEND + "/api/random_meme_text")).data
 }
+
+export async function fetchPlayCards(gameMode) {
+    return (await axios.get(BACKEND + "/api/playcards/" + gameMode)).data
+}

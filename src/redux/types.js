@@ -13,14 +13,19 @@ export const CHANGE_INPUT_GAME_ID = "APP/CHANGE_INPUT_GAME_ID"
 export const FETCH_RANDOM_MEME_TEXT = "APP/FETCH_RANDOM_MEME_TEXT"
 export const SET_RANDOM_MEME_TEXT = "APP/SET_RANDOM_MEME_TEXT"
 
+export const SHOW_OPEN_GAMES_SPINNER = "APP/SHOW_OPEN_GAMES_SPINNER"
+export const HIDE_OPEN_GAMES_SPINNER = "APP/HIDE_OPEN_GAMES_SPINNER"
+
 export const CREATE_GAME = "GAME/CREATE_GAME"
 export const JOIN_GAME = "GAME/JOIN_GAME"
+
+export const RESET_GAME = "GAME/RESET"
 
 export const SET_GAME_DATA = "GAME/SET_GAME_DATA"
 export const SET_CURRENT_USER = "GAME/SET_CURRENT_USER"
 
 export const PLAYERS_UPDATED = "GAME/PLAYERS_UPDATED"
-export const SET_GAME_READY = "APP/SET_GAME_READY" // Кароче если true - редирект будет сразу в лобби
+export const SET_GAME_READY = "APP/SET_GAME_READY" // Если true - редирект будет сразу в лобби
 
 export const KICK_PLAYER = "GAME/KICK_PLAYER"
 
@@ -35,3 +40,26 @@ export const SET_OPEN_GAMES = "APP/SET_OPEN_GAMES"
 export const START_GAME = "GAME/START_GAME"
 
 export const SET_GAME_TIMER = "GAME/SET_GAME_TIMER"
+
+export const SHOW_CARDS = "GAME/SHOW_CARDS"
+export const SET_PLAY_CARDS = "GAME/SET_PLAY_CARDS"
+
+export const SET_USER_ANSWER = "GAME/SET_USER_ANSWER"
+
+export const ADD_ANSWER = "GAME/ADD_ANSWER"
+export const SET_ANSWERS = "GAME/SET_ANSWERS"
+
+export const ROUND_STARTED = "GAME/ROUND_STARTED"
+export const RESET_ROUND = "GAME/RESET_ROUND"
+
+export const SET_ROUND_PAYLOAD = "GAME/SET_ROUND_PAYLOAD"
+
+export const SHOW_ANSWERS = "APP/SHOW_ANSWERS"
+export const HIDE_ANSWERS = "APP/HIDE_ANSWERS"
+
+export const SET_LEAD_ID = "GAME/SET_LEAD_ID"
+
+export const SET_GAME_STATE = "GAME/SET_GAME_STATE"
+
+export const SELECT_BEST_ANSWER = "GAME/SELECT_BEST_ANSWER"
+export const SET_BEST_ANSWER = "GAME/SET_BEST_ANSWER"

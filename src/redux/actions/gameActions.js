@@ -1,10 +1,20 @@
-import {PLAYERS_UPDATED, SET_CURRENT_USER, SET_GAME_DATA, SET_GS_ALLOW_FOREIGN, SETTINGS_UPDATED} from "../types";
+import {
+    PLAYERS_UPDATED,
+    RESET_GAME,
+    SET_CURRENT_USER,
+    SET_GAME_DATA,
+    SET_GS_ALLOW_FOREIGN,
+    SETTINGS_UPDATED
+} from "../types";
 
 export const setGameData = (gameData) => {
     console.log("Set game data")
     console.log(gameData.game)
 
     return dispatch => {
+        dispatch({
+            type: RESET_GAME
+        })
         dispatch({
             type: SET_GAME_DATA,
             payload: gameData.game

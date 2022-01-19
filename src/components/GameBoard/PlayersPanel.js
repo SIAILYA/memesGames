@@ -9,9 +9,9 @@ const PlayersPanel = () => {
             <div className="w-full max-h-[50vh] overflow-auto card hidden lg:block">
                 <div className="">
                     {
-                        players.map(player => {
+                        players.map((player, index) => {
                             return (
-                                <PlayerCard name={player.name} isAdmin={player.admin} avatar={player.avatar} isLead={player.isLead} score={player.score}/>
+                                <PlayerCard key={index} name={player.name} isAdmin={player.admin} isLead={player.lead} avatar={player.avatar} score={player.score}/>
                             )
                         })
                     }
