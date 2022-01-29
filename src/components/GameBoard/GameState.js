@@ -8,8 +8,10 @@ const GameState = () => {
     const progressBarRef = useRef()
 
     useEffect(() => {
-        console.log("Start progressBar")
-        startProgressBar()
+        if (gameTimer > 0) {
+            console.log("Start progressBar")
+            startProgressBar()
+        }
     }, [gameTimer])
 
     function startProgressBar() {
@@ -20,7 +22,7 @@ const GameState = () => {
         el.style.width = "100%"
 
         setTimeout(() => {
-            el.style.transitionDuration = (gameTimer || 5000) + "ms"
+            el.style.transitionDuration = gameTimer + "ms"
             el.style.width = "0"
         }, 200)
     }

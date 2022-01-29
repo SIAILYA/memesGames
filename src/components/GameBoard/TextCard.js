@@ -7,7 +7,7 @@ const TextCard = ({text, isSelected, disableChoose, className, canHover=true, in
         }
 
         if (disableChoose) {
-            res += "opacity-70 "
+            res += "opacity-50 "
         }
 
         if (canHover) {

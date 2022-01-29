@@ -11,7 +11,7 @@ const PlayersPanel = () => {
                     {
                         players.map((player, index) => {
                             return (
-                                <PlayerCard key={index} name={player.name} isAdmin={player.admin} isLead={player.lead} avatar={player.avatar} score={player.score}/>
+                                <PlayerCard key={index} name={player.name} isAdmin={player.isAdmin} isLead={player.isLead} avatar={player.avatar} score={player.score}/>
                             )
                         })
                     }

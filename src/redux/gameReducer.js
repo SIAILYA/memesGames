@@ -11,7 +11,7 @@ import {
     SET_ROUND_PAYLOAD,
     SET_LEAD_ID,
     SET_GAME_STATE,
-    SELECT_BEST_ANSWER, SET_BEST_ANSWER, RESET_ROUND
+    SELECT_BEST_ANSWER, SET_BEST_ANSWER, RESET_ROUND, INCREASE_ROUND
 } from "./types";
 
 const initialState = {
@@ -27,14 +27,14 @@ const initialState = {
     settings: {
         allowForeign: true
     },
-    timer: 5000,
+    timer: 0,
+    round: 0,
     bestAnswerId: ""
 }
 
 export const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_GAME_DATA:
-            console.log(action.payload)
             return {...state, ...action.payload}
         case PLAYERS_UPDATED:
             return {...state, players: action.payload}
@@ -64,6 +64,8 @@ export const gameReducer = (state = initialState, action) => {
             return {...state, bestAnswerId: action.payload}
         case RESET_ROUND:
             return {...state, answers: [], bestAnswerId: ""}
+        case INCREASE_ROUND:
+            return {...state, round: state.round + 1}
         default:
             return state
     }

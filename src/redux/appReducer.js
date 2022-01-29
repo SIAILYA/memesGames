@@ -5,7 +5,7 @@ import {
     HIDE_OPEN_GAMES_SPINNER,
     SET_GAME_READY,
     SET_OPEN_GAMES,
-    SET_RANDOM_MEME_TEXT, SHOW_ANSWERS,
+    SET_RANDOM_MEME_TEXT, SET_TIMER_ID, SHOW_ANSWERS,
     SHOW_LOBBY_CREATING_SPINNER,
     SHOW_LOCK_SPINNER,
     SHOW_OPEN_GAMES_SPINNER
@@ -19,7 +19,8 @@ const initialState = {
     gameReady: false, // Если true - то редиркет сразу в лобби, без StartGame
     randomMemeText: {pictures: [], texts: []},
     fetchOpenGamesSpinner: true,
-    showAnswers: false
+    showAnswers: false,
+    timerId: null
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -48,6 +49,8 @@ export const appReducer = (state = initialState, action) => {
             return {...state, showAnswers: true}
         case HIDE_ANSWERS:
             return {...state, showAnswers: false}
+        case SET_TIMER_ID:
+            return {...state, timerId: action.payload}
         default:
             return state
     }

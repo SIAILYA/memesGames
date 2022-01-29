@@ -59,7 +59,7 @@ const Lobby = () => {
                             {
                                 gamePlayers.map(player => {
                                     return (<LobbyPlayer key={player._id} name={player.name} avatar={player.avatar}
-                                                         isAdmin={player.admin}
+                                                         isAdmin={player.isAdmin}
                                                          id={player._id} onKick={(playerId) => {
                                         dispatch({type: KICK_PLAYER, payload: playerId})
                                     }}/>)

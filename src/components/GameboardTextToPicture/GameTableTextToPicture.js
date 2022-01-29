@@ -9,6 +9,7 @@ const GameTableTextToPicture = () => {
     const playCards = useSelector(state => state.game.playCards)
     const answer = useSelector(state => state.currentUser.answer)
     const roundPayload = useSelector(state => state.game.roundPayload)
+    const currentUserIsLead = useSelector(state => state.currentUser.isLead)
 
     const dispatch = useDispatch()
 
@@ -49,9 +50,10 @@ const GameTableTextToPicture = () => {
                                             }
                                         })
                                     }}
-                                    className="animate-fade"
+                                    className=""
                                     index={index}
-                                    disableChoose={answer !== null}
+                                    canHover={!currentUserIsLead}
+                                    disableChoose={answer !== null || currentUserIsLead}
                                     isSelected={index === answer}
                                 />
                             )

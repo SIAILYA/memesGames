@@ -1,23 +1,19 @@
-import {LOCATION_CHANGE} from "redux-first-history";
+import {LOCATION_CHANGE, push, replace} from "redux-first-history";
 import {all, call, put, select, takeEvery} from "redux-saga/effects";
-import {
-    fetchOpenGames,
-    fetchPlayCards,
-    fetchRandomMemeText,
-    setOpenGames,
-    showLobbyCreatingSpinner
-} from "../actions/appActions";
+import {fetchOpenGames, fetchRandomMemeText, setOpenGames, showLobbyCreatingSpinner} from "../actions/appActions";
 import {socket} from "../socket";
 import {
     CREATE_GAME,
     FETCH_OPEN_GAMES,
-    FETCH_RANDOM_MEME_TEXT, HIDE_ANSWERS,
+    FETCH_RANDOM_MEME_TEXT,
+    HIDE_ANSWERS,
     HIDE_OPEN_GAMES_SPINNER,
+    INCREASE_ROUND,
     JOIN_GAME,
-    KICK_PLAYER, RESET_ROUND,
+    KICK_PLAYER,
+    RESET_ROUND,
     ROUND_STARTED,
     SELECT_BEST_ANSWER,
-    SET_PLAY_CARDS,
     SET_RANDOM_MEME_TEXT,
     SET_ROUND_PAYLOAD,
     SET_USER_ANSWER,
@@ -90,9 +86,10 @@ function* fetchRandomMemeTextWorker() {
 }
 
 function* fetchPlayCardsWorker() {
-    const gameMode = yield select(state => state.game.mode)
-    const cards = yield call(fetchPlayCards, gameMode)
-    yield put({type: SET_PLAY_CARDS, payload: cards.cards})
+    // const gameMode = yield select(state => state.game.mode)
+    // const cards = yield call(fetchPlayCards, gameMode)
+    // yield put({type: SET_PLAY_CARDS, payload: cards.cards})
+    yield socket.emit("get_cards")
 }
 
 function* answerWorker({payload}) {
@@ -102,6 +99,7 @@ function* answerWorker({payload}) {
 function* roundStartedWorker({payload}) {
     yield put({type: RESET_ROUND})
     yield put({type: HIDE_ANSWERS})
+    yield put({type: INCREASE_ROUND})
     yield put({type: SET_ROUND_PAYLOAD, payload: payload.roundPayload})
 }
 
